@@ -1,0 +1,22 @@
+.DS_Store
+*.gem
+*.rbc
+.bundle
+.config
+coverage
+InstalledFiles
+lib/bundler/man
+pkg
+rdoc
+spec/reports
+test/tmp
+test/version_tmp
+tmp
+server/.sass-cache/
+server/public/css/styles.css
+server/public/css/mapey.css
+
+# YARD artifacts
+.yardoc
+_yardoc
+doc/
