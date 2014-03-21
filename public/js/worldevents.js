@@ -2,18 +2,18 @@
   var container = document.getElementById(mapContainer);
   var particleSize = 2;
   var colorsAvailable = { 
-    white: 'white',
-    red: 'red',
-    green: 'green',
-    yellow: 'yellow',
-    cyan: 'cyan',
-    magenta: 'magenta',
-    orange: 'orange'
+    white:    'rgba(245, 245, 245, 0.6)',
+    red:      'rgba(250,   0,   0, 0.6)',
+    green:    'rgba(  0, 250,   0, 0.6)',
+    yellow:   'rgba(250, 250,   0, 0.6)',
+    cyan:     'rgba(  0, 250, 250, 0.6)',
+    magenta:  'rgba(250,   0, 250, 0.6)',
+    orange:   'rgba(250, 127,   0, 0.6)'
   };
 
   var eventTypes = {
     'event': {
-      color: 'red',
+      color: 'white',
       ttl: 1
     }
   };
