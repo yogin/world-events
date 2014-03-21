@@ -1,7 +1,15 @@
 (function(mapContainer) {
   var container = document.getElementById(mapContainer);
-  var particleSize = 16;
-  var colorsAvailable = [ 'white', 'red', 'green', 'yellow', 'cyan', 'magenta', 'orange' ];
+  var particleSize = 2;
+  var colorsAvailable = { 
+    white: 'white',
+    red: 'red',
+    green: 'green',
+    yellow: 'yellow',
+    cyan: 'cyan',
+    magenta: 'magenta',
+    orange: 'orange'
+  };
 
   var eventTypes = {
     'event': {
@@ -41,40 +49,35 @@
                           .enter()
                             .append('defs')
                             .selectAll('radialGradient')
-                              .data(colorsAvailable)
+                              .data(d3.entries(colorsAvailable))
                               .enter()
                                 .append('radialGradient')
-                                .attr('id', function(d, i) { return 'gradient-'+d; })
+                                .attr('id', function(d, i) { return 'gradient-'+d.key; })
 
     gradients.append('stop')
-              .attr('offset', '1%')
-              .attr('stop-color', function(d, i) { return d; })
-              .attr('stop-opacity', 0.99)
-
-    gradients.append('stop')
-              .attr('offset', '1.5%')
-              .attr('stop-color', function(d, i) { return d; })
-              .attr('stop-opacity', 0.95)
-
-    gradients.append('stop')
-              .attr('offset', '2%')
-              .attr('stop-color', function(d, i) { return d; })
-              .attr('stop-opacity', 0.85)
+              .attr('offset', '0%')
+              .attr('stop-color', function(d, i) { return d.value; })
+              .attr('stop-opacity', 0.90)
 
     gradients.append('stop')
               .attr('offset', '10%')
-              .attr('stop-color', function(d, i) { return d; })
-              .attr('stop-opacity', 0.25)
+              .attr('stop-color', function(d, i) { return d.value; })
+              .attr('stop-opacity', 0.80)
 
     gradients.append('stop')
-              .attr('offset', '17%')
-              .attr('stop-color', function(d, i) { return d; })
-              .attr('stop-opacity', 0.05)
+              .attr('offset', '40%')
+              .attr('stop-color', function(d, i) { return d.value; })
+              .attr('stop-opacity', 0.50)
 
     gradients.append('stop')
-              .attr('offset', '25%')
-              .attr('stop-color', function(d, i) { return d; })
-              .attr('stop-opacity', 0.00)
+              .attr('offset', '65%')
+              .attr('stop-color', function(d, i) { return d.value; })
+              .attr('stop-opacity', 0.15)
+
+    gradients.append('stop')
+              .attr('offset', '80%')
+              .attr('stop-color', function(d, i) { return d.value; })
+              .attr('stop-opacity', 0.0)
 
     layer
       .selectAll(className)
