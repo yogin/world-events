@@ -3,12 +3,12 @@
   var particleSize = 2;
   var colorsAvailable = { 
     white:    'rgba(245, 245, 245, 0.6)',
-    red:      'rgba(250,   0,   0, 0.6)',
-    green:    'rgba(  0, 250,   0, 0.6)',
-    yellow:   'rgba(250, 250,   0, 0.6)',
-    cyan:     'rgba(  0, 250, 250, 0.6)',
-    magenta:  'rgba(250,   0, 250, 0.6)',
-    orange:   'rgba(250, 127,   0, 0.6)'
+    red:      'rgba(245,   0,   0, 0.6)',
+    green:    'rgba(  0, 245,   0, 0.6)',
+    yellow:   'rgba(245, 245,   0, 0.6)',
+    cyan:     'rgba(  0, 245, 245, 0.6)',
+    magenta:  'rgba(245,   0, 245, 0.6)',
+    orange:   'rgba(245, 122,   0, 0.6)'
   };
 
   var eventTypes = {
