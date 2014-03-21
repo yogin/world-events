@@ -15,10 +15,7 @@ class EventFeed
   end
 
   def broadcast!(connections)
-    $stdout.puts "broadcasting to #{connections.size} connections"
-
     # always consume events even if there are no connections
-    #payload = events.map { |e| event_data('events', e) }.join
     payload = event_data('events', events)
     return if payload.empty?
 
@@ -29,7 +26,6 @@ class EventFeed
 
   def ping!(connections)
     now = Time.now
-    #$stdout.puts "pinging #{connections.size} connections at #{now}"
 
     connections.each do |connection|
       connection << ping(now)
@@ -73,7 +69,6 @@ class WorldEvents < Sinatra::Base
   set :server, :thin
   set :public_folder, File.dirname(__FILE__) + '/public'
 
-  #set :redis, Redis.new(url: REDIS_URI)
   set :stream_connections, []
   set :timer, nil
   set :feed, nil
@@ -97,7 +92,6 @@ class WorldEvents < Sinatra::Base
   end
 
   helpers do
-
     def geolocations
       @geolocations ||= File.read(File.dirname(__FILE__)+'/misc/geolocations.csv').split("\n").map{ |d| d.split(',').map(&:to_f) }.shuffle
     end
@@ -106,24 +100,23 @@ class WorldEvents < Sinatra::Base
       geo = geolocations.sample
       { :latitude => geo[0], :longitude => geo[1] }
     end
-
   end
 
-#  get '/seed' do
-    #stream(:keep_open) do |out|
-      #@seed_timer ||= EM.add_periodic_timer(5) do
-        #Random.rand(1_000).times do
-          #data = {
-            #:id => Random.rand(1_000_000_000),
-            #:type => [ :event ].sample,
-            #:time => Time.now.to_i,
-          #}.merge(geolocation)
+  get '/seed' do
+    stream(:keep_open) do |out|
+      @seed_timer ||= EM.add_periodic_timer(5) do
+        Random.rand(1_000).times do
+          data = {
+            :id => Random.rand(1_000_000_000),
+            :type => [ :event ].sample,
+            :time => Time.now.to_i,
+          }.merge(geolocation)
 
-          #settings.feed.enqueue!(data)
-        #end
-      #end
-    #end
-  #end
+          settings.feed.enqueue!(data)
+        end
+      end
+    end
+  end
 
   get '/stream', provides: 'text/event-stream' do
     stream(:keep_open) do |out|
